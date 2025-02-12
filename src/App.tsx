@@ -6,28 +6,32 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  function pagination(c:any, m:any) {
+    let current=c;
+    let newArr:any=[];
+    newArr.push(1);
+    for(let i=2;i<=m;i++){
+   
+     if(i===current-1 || i===current+1 || i===current || i===m){
+       newArr.push(i)
+     }
+    }
+    if(newArr[1]-newArr[0]>1){
+      newArr.splice(1,0,"...")
+    }
+   if(newArr[newArr.length-1]-newArr[newArr.length-2]>1){
+     newArr.splice(newArr.length-1,0,"...")
+   }
+   
+    return newArr
+   }
+  //  console.log(pagination(8, 10))
+
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+{
+  pagination(1, 10)
+}
     </>
   )
 }
